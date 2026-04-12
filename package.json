@@ -1,8 +1,8 @@
 {
-  "name": "astro-cf-blog",
-  "description": "Build a personal website, blog, or portfolio with Astro.",
+  "name": "mikado-blog",
+  "description": "A simple and accessible SEO-friendly blog created with Astro running on a Cloudflare Worker. Can be used as a template.",
   "cloudflare": {
-    "label": "Astro Framework Starter",
+    "label": "Mikado Blog",
     "products": [
       "Workers"
     ],

@@ -1,11 +1,11 @@
 export const generalConfig = {
   // site identity
-  url: new URL("https://blog.karlmantle.workers.dev/"),
-  name: "Karl's blog",
-  short_name: "Karlsblog",
+  url: new URL("https://mikado-blog.karlmantle.workers.dev/"),
+  name: "Mikado Blog",
+  short_name: "Mikado",
   title_separator: "~",
   description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquam.",
+    "A simple and accessible SEO-friendly blog created with Astro running on a Cloudflare Worker. Can be used as a template.",
   logo: {
     src: "/logo.webp",
     height: 512,
@@ -73,7 +73,7 @@ export const socialLinks = [
     show: true,
   },
   {
-    href: "https://github.com/karl-mantle/astro-cf-blog/",
+    href: "https://github.com/karl-mantle/mikado-blog/",
     icon: "simple-icons:github",
     label: "Visit the GitHub repo",
     show: true,

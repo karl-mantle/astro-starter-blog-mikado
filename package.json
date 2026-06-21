@@ -25,7 +25,7 @@
     "@tailwindcss/typography": "0.5.18",
     "@tailwindcss/vite": "4.1.13",
     "astro": "5.13.9",
-    "astro-favicons": "github:karl-mantle/astro-favicons",
+    "astro-favicons": "3.1.5",
     "astro-icon": "1.1.5",
     "astro-robots-txt": "1.0.0",
     "leaflet": "1.9.4",

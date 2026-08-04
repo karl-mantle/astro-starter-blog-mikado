@@ -1,6 +1,6 @@
 export const generalConfig = {
   // site identity
-  url: new URL("https://mikado-blog.karlmantle.workers.dev/"),
+  url: new URL("https://mikado.karlmantle.workers.dev/"),
   name: "Mikado Blog",
   short_name: "Mikado",
   title_separator: "~",
@@ -73,7 +73,7 @@ export const socialLinks = [
     show: true,
   },
   {
-    href: "https://github.com/karl-mantle/mikado-blog/",
+    href: "https://github.com/karl-mantle/astro-starter-blog-mikado/",
     icon: "simple-icons:github",
     label: "Visit the GitHub repo",
     show: true,

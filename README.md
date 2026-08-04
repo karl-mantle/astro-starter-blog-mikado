@@ -1,8 +1,8 @@
-# mikado-blog
+# astro-starter-blog-mikado
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://github.com/karl-mantle/mikado-blog/)
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://github.com/karl-mantle/astro-starter-blog-mikado/)
 
-[Template Preview](https://mikado-blog.karlmantle.workers.dev/)
+[Template Preview](https://mikado.karlmantle.workers.dev/)
 
 <!-- dash-content-start -->
 
@@ -70,8 +70,8 @@ A blog template built on Astro and optimised for deployment on Cloudflare Worker
 ### Clone & Setup
 
 ```bash
-git clone https://github.com/karl-mantle/mikado-blog/
-cd mikado-blog
+git clone https://github.com/karl-mantle/astro-starter-blog-mikado/
+cd astro-starter-blog-mikado
 npm install
 npm run dev
 ```

@@ -12,7 +12,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://mikado-blog.karlmantle.workers.dev/",
+  site: "https://mikado.karlmantle.workers.dev/",
   integrations: [
     favicons({
       name: `${generalConfig.name}`,
@@ -21,7 +21,7 @@ export default defineConfig({
       themes: ["#000", "#fff"],
       background: "#fff",
       manifest: {
-        start_url: "https://mikado-blog.karlmantle.workers.dev/",
+        start_url: "https://mikado.karlmantle.workers.dev/",
         orientation: "any",
         display: "standalone",
         display_override: ["window-controls-overlay", "minimal-ui"],

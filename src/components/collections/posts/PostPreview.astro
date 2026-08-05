@@ -22,7 +22,7 @@ interface Props extends HTMLAttributes<"li"> {
   loading?: "eager" | "lazy";
 }
 
-const { category, content, date, heading, href, image, loading }: Props = Astro.props;
+const { category, content, date, heading, href, image, loading } = Astro.props;
 ---
 
 <li class="flex flex-col gap-2">
@@ -52,7 +52,7 @@ const { category, content, date, heading, href, image, loading }: Props = Astro.
   </div>
 
   <article
-    class="prose-classes max-w-none"
+    class="prose-classes"
     set:html={content
       ? truncate(content.html, { length: 200, byWords: true })
       : "<p>Content not found.</p>"}

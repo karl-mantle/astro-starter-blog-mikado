@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<"time"> {
   hideIcon?: boolean;
 }
 
-const { date, hideIcon, class: className }: Props = Astro.props;
+const { date, hideIcon, class: className } = Astro.props;
 
 const ordinal = (day: number) => {
   const suffixSet = ["th", "st", "nd", "rd"];

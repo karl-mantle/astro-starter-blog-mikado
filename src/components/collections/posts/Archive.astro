@@ -10,7 +10,7 @@ interface Props extends HTMLAttributes<"div"> {
   page: Page<CollectionEntry<"posts">>;
 }
 
-const { page, class: className }: Props = Astro.props;
+const { page, class: className } = Astro.props;
 ---
 
 <div class:list={["not-prose contain flex flex-col gap-4 md:gap-8", className]}>

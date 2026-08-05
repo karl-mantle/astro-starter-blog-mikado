@@ -14,7 +14,7 @@ interface Props extends HTMLAttributes<"div"> {
   loading?: "eager" | "lazy";
 }
 
-const { images, loading, class: className, ...rest }: Props = Astro.props;
+const { images, loading, class: className, ...rest } = Astro.props;
 ---
 
 <div class:list={["swiper not-prose contain mb-4 md:mb-8", className]} {...rest}>

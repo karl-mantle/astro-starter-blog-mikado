@@ -26,7 +26,7 @@ const {
   title,
   url,
   ...rest
-}: Props = Astro.props;
+} = Astro.props;
 
 const extractVideoId = (url: string): string | undefined => {
   if (!url) return undefined;

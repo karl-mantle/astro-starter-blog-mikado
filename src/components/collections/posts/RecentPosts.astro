@@ -15,7 +15,7 @@ interface Props extends HTMLAttributes<"ol"> {
   variant: "default" | "list" | "image" | "preview" | "row";
 }
 
-const { columns = 3, max = 3, loading, variant = "default" }: Props = Astro.props;
+const { columns = 3, max = 3, loading, variant = "default" } = Astro.props;
 
 const entries = await getPosts(max);
 ---

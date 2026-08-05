@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<"form"> {
   siteKey: string;
 }
 
-const { accessKey, siteKey, class: className, ...rest }: Props = Astro.props;
+const { accessKey, siteKey, class: className, ...rest } = Astro.props;
 ---
 
 <form

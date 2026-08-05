@@ -9,7 +9,7 @@ interface Props extends HTMLAttributes<"nav"> {
   prevEntry: CollectionEntry<"posts">;
 }
 
-const { nextEntry, prevEntry }: Props = Astro.props;
+const { nextEntry, prevEntry } = Astro.props;
 ---
 
 <nav class="hidden justify-between gap-4 px-4 md:flex" aria-label="Post navigation">

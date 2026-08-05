@@ -23,7 +23,7 @@ const {
   loading,
   variant = "image",
   class: className,
-}: Props = Astro.props;
+} = Astro.props;
 
 const entries = await getPostsByCategory(category, max);
 ---

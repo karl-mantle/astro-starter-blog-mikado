@@ -3,10 +3,18 @@ import slugify from "slugify";
 import { generalConfig } from "~/site.config";
 import { cleanUrl, getCommonStructuredData } from "~/lib/schema/common";
 
-export function createArticle(url: URL, entry: CollectionEntry<"posts">) {
+export function createArticle(
+  metadata: {
+    type: string;
+    url: URL;
+    title: string;
+    description: string;
+  },
+  entry: CollectionEntry<"posts">,
+) {
   const { ids: commonIds, nodes: commonNodes } = getCommonStructuredData();
 
-  const canonicalUrl = cleanUrl(url);
+  const canonicalUrl = cleanUrl(metadata.url);
 
   const ids = {
     webpage: `${canonicalUrl}#webpage`,
@@ -45,8 +53,8 @@ export function createArticle(url: URL, entry: CollectionEntry<"posts">) {
         "@id": ids.webpage,
         inLanguage: generalConfig.language,
         url: canonicalUrl,
-        name: entry.data.title,
-        description: entry.data.description,
+        name: metadata.title,
+        description: metadata.description,
         isPartOf: { "@id": commonIds.website },
         /* breadcrumb: { "@id": ids.breadcrumb }, */
         primaryImageOfPage: articleImage
@@ -69,8 +77,8 @@ export function createArticle(url: URL, entry: CollectionEntry<"posts">) {
         "@id": ids.article,
         inLanguage: generalConfig.language,
         url: canonicalUrl,
-        headline: entry.data.title,
-        description: entry.data.description,
+        headline: metadata.title,
+        description: metadata.description,
         articleSection: entry.data.category,
         keywords: entry.data.tags.length ? entry.data.tags.join(", ") : undefined,
         datePublished: entry.data.pubDate.toISOString(),

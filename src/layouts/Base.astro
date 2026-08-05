@@ -14,20 +14,25 @@ import Footer from "~/components/footer/Footer.astro";
 import BodyEnd from "~/components/measurement/BodyEnd.astro";
 
 interface Props {
+  type: string;
+  title: string;
+  description: string;
   collection?: keyof DataEntryMap;
-  description?: string;
-  entry: DataEntryMap[keyof DataEntryMap][string];
+  entry?: DataEntryMap[keyof DataEntryMap][string];
   page?: Page;
   tableOfContents?: MarkdownHeading[];
-  title?: string;
-  type: string;
 }
 
 const { collection, description, entry, page, tableOfContents, title, type } = Astro.props;
 
-const url = new URL(Astro.url.pathname, Astro.site);
+const metadata = {
+  type,
+  title,
+  description,
+  url: new URL(Astro.url.pathname, Astro.site),
+};
 
-const schema = createSchema(type, url, entry, page);
+const schema = createSchema(metadata, entry, page);
 
 const pagefindAttr = collection ? { "data-pagefind-filter": `collection:${collection}` } : {};
 ---

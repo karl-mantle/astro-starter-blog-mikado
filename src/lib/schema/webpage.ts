@@ -1,10 +1,14 @@
-import type { CollectionEntry } from "astro:content";
 import { generalConfig } from "~/site.config";
 import { cleanUrl, getCommonStructuredData } from "~/lib/schema/common";
 
-export function createWebpage(url: URL, entry: CollectionEntry<"pages">) {
+export function createWebpage(metadata: {
+  type: string;
+  url: URL;
+  title: string;
+  description: string;
+}) {
   const { ids: commonIds, nodes: commonNodes } = getCommonStructuredData();
-  const canonicalUrl = cleanUrl(url);
+  const canonicalUrl = cleanUrl(metadata.url);
 
   const ids = {
     webpage: `${canonicalUrl}#webpage`,
@@ -12,7 +16,7 @@ export function createWebpage(url: URL, entry: CollectionEntry<"pages">) {
     primaryImage: `${canonicalUrl}#primary-image`,
   };
 
-  const pageImage = entry.data.image
+  /* const pageImage = entry.data.image
     ? {
         "@type": "ImageObject",
         "@id": ids.primaryImage,
@@ -23,7 +27,7 @@ export function createWebpage(url: URL, entry: CollectionEntry<"pages">) {
         width: entry.data.image.src.width,
         height: entry.data.image.src.height,
       }
-    : undefined;
+    : undefined; */
 
   return {
     "@context": "https://schema.org",
@@ -35,11 +39,12 @@ export function createWebpage(url: URL, entry: CollectionEntry<"pages">) {
         "@id": ids.webpage,
         inLanguage: generalConfig.language,
         url: canonicalUrl,
-        name: entry.data.title,
-        description: entry.data.description,
+        name: metadata.title,
+        description: metadata.description,
         isPartOf: { "@id": commonIds.website },
         /* breadcrumb: { "@id": ids.breadcrumb }, */
-        primaryImageOfPage: pageImage ? { "@id": ids.primaryImage } : { "@id": commonIds.ogImage },
+        /* primaryImageOfPage: pageImage ? { "@id": ids.primaryImage } : { "@id": commonIds.ogImage }, */
+        primaryImageOfPage: { "@id": commonIds.ogImage },
       },
 
       // TODO
@@ -48,11 +53,11 @@ export function createWebpage(url: URL, entry: CollectionEntry<"pages">) {
         "@id": ids.breadcrumb,
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: generalConfig.url },
-          { "@type": "ListItem", position: 2, name: entry.data.title, item: canonicalUrl },
+          { "@type": "ListItem", position: 2, name: metadata.title, item: canonicalUrl },
         ],
       }, */
 
-      ...(pageImage ? [pageImage] : []),
+      /* ...(pageImage ? [pageImage] : []), */
     ],
   };
 }

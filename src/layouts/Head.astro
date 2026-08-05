@@ -1,50 +1,55 @@
 ---
-import "~/styles/global.css";
 import type { DataEntryMap } from "astro:content";
 import { getImage } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
-import { generalConfig } from "~/site.config";
-import defaultOpengraphImage from "public/opengraph.webp";
+import { siteConfig } from "~/site.config";
+import "~/styles/global.css";
+import opengraphImageSrc from "public/opengraph.webp";
+import MeasurementHeadEnd from "~/components/measurement/HeadEnd.astro";
 
 interface Props {
-  description?: string;
-  entry: DataEntryMap[keyof DataEntryMap][string];
-  title?: string;
+  description: string;
+  entry?: DataEntryMap[keyof DataEntryMap][string];
+  title: string;
 }
 
 const { description, entry, title } = Astro.props;
 
-const metaTitle = `${title ?? entry.data.title} ${generalConfig.title_separator} ${generalConfig.name}`;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const imageMeta = entry.data.image?.src ?? defaultOpengraphImage;
-const opengraphImage = await getImage({ src: imageMeta });
+const opengraphImage = entry?.data.image?.src ?? opengraphImageSrc;
+
+const metadata = {
+  canonical: new URL(Astro.url.pathname, Astro.site),
+  description: entry?.data.description ?? description,
+  image: await getImage({ src: opengraphImage, width: 1200, height: 630 }),
+  title: `${entry?.data.title ?? title} ${siteConfig.title_separator} karlmantle.com`,
+};
 ---
 
 <head>
   <meta charset="utf-8" />
-  <title data-pagefind-meta="title">{metaTitle}</title>
+  <title data-pagefind-meta="title">{metadata.title}</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="title" content={metaTitle} />
-  <meta name="description" content={description ?? entry.data.description} />
+  <meta name="title" content={metadata.title} />
+  <meta name="description" content={metadata.description} />
   <meta name="generator" content={Astro.generator} />
-  <link rel="canonical" href={canonicalURL} />
+  <link rel="canonical" href={metadata.canonical} />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content={Astro.url} />
-  <meta property="og:title" content={metaTitle} />
-  <meta property="og:description" content={description ?? entry.data.description} />
-  <meta property="og:image" content={new URL(opengraphImage.src, Astro.url).toString()} />
+  <meta property="og:title" content={metadata.title} />
+  <meta property="og:description" content={metadata.description} />
+  <meta property="og:image" content={metadata.image.src} />
 
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content={Astro.url} />
-  <meta property="twitter:title" content={metaTitle} />
-  <meta property="twitter:description" content={description ?? entry.data.description} />
-  <meta property="twitter:image" content={new URL(opengraphImage.src, Astro.url).toString()} />
+  <meta property="twitter:title" content={metadata.title} />
+  <meta property="twitter:description" content={metadata.description} />
+  <meta property="twitter:image" content={metadata.image.src} />
 
   <link
     rel="alternate"
     type="application/rss+xml"
-    title=`${generalConfig.name}`
+    title=`${siteConfig.name}`
     href={new URL("rss.xml", Astro.site)}
   />
 
@@ -61,4 +66,6 @@ const opengraphImage = await getImage({ src: imageMeta });
 
   {/* slot for extras */}
   <slot />
+
+  <MeasurementHeadEnd />
 </head>

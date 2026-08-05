@@ -6,24 +6,28 @@ import { createSearchResultPage } from "~/lib/schema/searchResultsPage";
 import { createArticle } from "~/lib/schema/article";
 
 export function createSchema(
-  type: string,
-  url: URL,
-  entry: DataEntryMap[keyof DataEntryMap][string],
+  metadata: {
+    type: string;
+    url: URL;
+    title: string;
+    description: string;
+  },
+  entry?: DataEntryMap[keyof DataEntryMap][string],
   page?: Page,
 ) {
   let schema;
-  switch (type) {
+  switch (metadata.type) {
     case "webpage":
-      schema = createWebpage(url, entry as CollectionEntry<"pages">);
+      schema = createWebpage(metadata);
       break;
     case "collectionPage":
-      schema = createCollectionPage(url, entry as CollectionEntry<"pages">, page);
+      schema = createCollectionPage(metadata, page);
       break;
     case "searchResultsPage":
-      schema = createSearchResultPage(url);
+      schema = createSearchResultPage(metadata);
       break;
     case "article":
-      schema = createArticle(url, entry as CollectionEntry<"posts">);
+      schema = createArticle(metadata, entry as CollectionEntry<"posts">);
       break;
     default:
       break;

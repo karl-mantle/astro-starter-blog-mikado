@@ -1,9 +1,14 @@
 import { generalConfig } from "~/site.config";
 import { cleanUrl, getCommonStructuredData } from "~/lib/schema/common";
 
-export function createSearchResultPage(url: URL) {
+export function createSearchResultPage(metadata: {
+  type: string;
+  url: URL;
+  title: string;
+  description: string;
+}) {
   const { ids: commonIds, nodes: commonNodes } = getCommonStructuredData();
-  const canonicalUrl = cleanUrl(url);
+  const canonicalUrl = cleanUrl(metadata.url);
 
   const webpageId = `${canonicalUrl}#webpage`;
 

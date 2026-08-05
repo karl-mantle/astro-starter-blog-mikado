@@ -1,11 +1,18 @@
 import type { Page } from "astro";
-import type { CollectionEntry } from "astro:content";
 import { cleanUrl, getCommonStructuredData } from "~/lib/schema/common";
 import { collectionsConfig, generalConfig } from "~/site.config";
 
-export function createCollectionPage(url: URL, entry: CollectionEntry<"pages">, page?: Page) {
+export function createCollectionPage(
+  metadata: {
+    type: string;
+    url: URL;
+    title: string;
+    description: string;
+  },
+  page?: Page,
+) {
   const { ids: commonIds, nodes: commonNodes } = getCommonStructuredData();
-  const canonicalUrl = cleanUrl(url);
+  const canonicalUrl = cleanUrl(metadata.url);
 
   const ids = {
     webpage: `${canonicalUrl}#webpage`,
@@ -23,8 +30,8 @@ export function createCollectionPage(url: URL, entry: CollectionEntry<"pages">, 
         "@id": ids.webpage,
         inLanguage: generalConfig.language,
         url: canonicalUrl,
-        name: entry.data.title,
-        description: entry.data.description,
+        name: metadata.title,
+        description: metadata.description,
         isPartOf: { "@id": commonIds.website },
         /* breadcrumb: { "@id": ids.breadcrumb }, */
         primaryImageOfPage: { "@id": commonIds.ogImage },
@@ -37,14 +44,14 @@ export function createCollectionPage(url: URL, entry: CollectionEntry<"pages">, 
         "@id": ids.breadcrumb,
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: generalConfig.url },
-          { "@type": "ListItem", position: 2, name: entry.data.title, item: canonicalUrl },
+          { "@type": "ListItem", position: 2, name: metadata.title, item: canonicalUrl },
         ],
       }, */
 
       {
         "@type": "ItemList",
         "@id": ids.itemList,
-        name: `${entry.data.title} page ${page?.currentPage}`,
+        name: `${metadata.title} page ${page?.currentPage}`,
         numberOfItems: page ? page.data.length : undefined,
         itemListElement: page
           ? page.data.map((p, i) => ({

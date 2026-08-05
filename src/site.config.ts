@@ -16,6 +16,7 @@ export const domainConfig = {
 };
 
 export const siteConfig = {
+  locale: "en-GB",
   url: getSiteUrl(domainConfig),
   name: "Astro Starter Blog: Mikado",
   short_name: "Mikado Blog",
@@ -32,8 +33,6 @@ export const siteConfig = {
     height: 630,
     width: 1200,
   },
-  language: "en-GB",
-  date_format: "j F Y",
 };
 
 export const measurementConfig = {

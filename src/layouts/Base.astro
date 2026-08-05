@@ -38,7 +38,7 @@ const pagefindAttr = collection ? { "data-pagefind-filter": `collection:${collec
 ---
 
 <!doctype html>
-<html lang={generalConfig.language}>
+<html lang={generalConfig.locale}>
   <Head description={description} entry={entry} title={title}>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
     {type === "searchResultsPage" && <script type="module" src="/pagefind/pagefind-ui.js" />}

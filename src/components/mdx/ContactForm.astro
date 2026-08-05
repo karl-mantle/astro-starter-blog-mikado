@@ -14,7 +14,7 @@ const { accessKey, siteKey, class: className, ...rest }: Props = Astro.props;
   id="form"
   method="POST"
   data-form
-  class:list={["grid w-full grid-cols-1 gap-2 md:grid-cols-2", className]}
+  class:list={["not-prose contain grid w-full grid-cols-1 gap-2 md:grid-cols-2", className]}
   {...rest}
 >
   <input type="hidden" name="access_key" value={accessKey} />

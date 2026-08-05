@@ -51,11 +51,7 @@
   .contain {
     @apply max-w-3xl;
   }
-  .typography {
+  .prose-classes {
     @apply prose prose-mikado md:prose-lg dark:prose-invert prose-a:hover:no-underline prose-h1:font-semibold prose-h2:font-semibold prose-h3:font-medium prose-figcaption:text-center max-w-none;
-
-    & > *:where(p, h1, h2, h3, h4, a, li, dt, dd, blockquote) {
-      @apply max-w-[75ch];
-    }
   }
 }

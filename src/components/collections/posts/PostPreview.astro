@@ -52,7 +52,7 @@ const { category, content, date, heading, href, image, loading }: Props = Astro.
   </div>
 
   <article
-    class="typography max-w-none"
+    class="prose-classes max-w-none"
     set:html={content
       ? truncate(content.html, { length: 200, byWords: true })
       : "<p>Content not found.</p>"}

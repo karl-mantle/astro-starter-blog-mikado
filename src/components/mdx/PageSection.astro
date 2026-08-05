@@ -18,7 +18,7 @@ const { columns, escapeFormatting, class: className, ...rest } = Astro.props;
     columns === 4 && "md:grid-cols-4",
     columns === 5 && "md:grid-cols-5",
     columns === 6 && "md:grid-cols-6",
-    !escapeFormatting && "typography",
+    !escapeFormatting && "prose-classes",
     className,
   ]}
 >

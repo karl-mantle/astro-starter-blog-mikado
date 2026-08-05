@@ -1,11 +1,27 @@
-export const generalConfig = {
-  // site identity
-  url: new URL("https://mikado.karlmantle.workers.dev/"),
-  name: "Mikado Blog",
-  short_name: "Mikado",
+import { getSiteUrl } from "~/lib/domain";
+
+export const domainConfig = {
+  development: {
+    site: "http://localhost:4321/",
+  },
+  ci: {
+    site: "http://localhost:4321/",
+  },
+  staging: {
+    site: "https://mikado.karlmantle.workers.dev/",
+  },
+  production: {
+    site: "https://mikado.karlmantle.workers.dev/",
+  },
+};
+
+export const siteConfig = {
+  url: getSiteUrl(domainConfig),
+  name: "Astro Starter Blog: Mikado",
+  short_name: "Mikado Blog",
   title_separator: "~",
   description:
-    "A simple and accessible SEO-friendly blog created with Astro running on a Cloudflare Worker. Can be used as a template.",
+    "An accessible, SEO-friendly starter template for building an Astro blog hosted on a Cloudflare Worker.",
   logo: {
     src: "/logo.webp",
     height: 512,
@@ -16,10 +32,8 @@ export const generalConfig = {
     height: 630,
     width: 1200,
   },
-  // datetime
   language: "en-GB",
   date_format: "j F Y",
-  copyrightYear: new Date().getFullYear(),
 };
 
 export const measurementConfig = {
@@ -40,10 +54,10 @@ export const measurementConfig = {
 
 export const collectionsConfig = {
   posts_per_page: 9,
-  permalink_posts: "/posts/",
-  permalink_posts_entry: "/posts/entry/",
-  permalink_posts_category: "/posts/category/",
-  permalink_posts_tag: "/posts/tag/",
+  permalink_posts: "posts",
+  permalink_posts_entry: "posts/entry/",
+  permalink_posts_category: "posts/category/",
+  permalink_posts_tag: "posts/tag/",
 };
 
 export const imagesConfig = {
@@ -70,18 +84,15 @@ export const socialLinks = [
     href: "https://www.karlmantle.com",
     icon: "material-symbols:globe-uk-sharp",
     label: "Visit my website",
-    show: true,
   },
   {
     href: "https://github.com/karl-mantle/astro-starter-blog-mikado/",
     icon: "simple-icons:github",
     label: "Visit the GitHub repo",
-    show: true,
   },
   {
     href: "/rss.xml",
     icon: "material-symbols:rss-feed",
     label: "Subscribe to RSS feed",
-    show: true,
   },
 ];

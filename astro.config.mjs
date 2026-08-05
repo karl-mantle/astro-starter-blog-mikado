@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import { generalConfig } from "./src/site.config";
+import { siteConfig } from "./src/site.config";
 import favicons from "astro-favicons";
 import cloudflare from "@astrojs/cloudflare";
 import icon from "astro-icon";
@@ -12,16 +12,16 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://mikado.karlmantle.workers.dev/",
+  site: siteConfig.url,
   integrations: [
     favicons({
-      name: `${generalConfig.name}`,
-      short_name: `${generalConfig.short_name}`,
+      name: siteConfig.name,
+      short_name: siteConfig.short_name,
       appleStatusBarStyle: "black-translucent",
       themes: ["#000", "#fff"],
       background: "#fff",
       manifest: {
-        start_url: "https://mikado.karlmantle.workers.dev/",
+        start_url: siteConfig.url,
         orientation: "any",
         display: "standalone",
         display_override: ["window-controls-overlay", "minimal-ui"],

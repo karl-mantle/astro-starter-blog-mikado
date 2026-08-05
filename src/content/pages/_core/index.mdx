@@ -4,12 +4,10 @@ description: "A simple and accessible SEO-friendly blog created with Astro runni
 slug: "index"
 ---
 
-import Section from "~/components/mdx/layout/Section.astro";
-import Markdown from "~/components/mdx/layout/Markdown.astro";
+import PageSection from "~/components/mdx/PageSection.astro";
 import RecentPosts from "~/components/collections/posts/RecentPosts.astro";
 
-<Section class="contain mb-4 md:mb-12">
-<Markdown>
+<PageSection class="contain mb-4 md:mb-12">
 
 # Mikado Blog
 
@@ -17,8 +15,6 @@ A simple and accessible SEO-friendly blog created with Astro running on a Cloudf
 
 ## Latest posts
 
-</Markdown>
-
 <RecentPosts columns={2} max={4} loading="eager" variant="image" />
 
-</Section>
+</PageSection>

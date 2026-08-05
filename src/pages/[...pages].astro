@@ -1,7 +1,7 @@
 ---
 import { type CollectionEntry, getEntry, render } from "astro:content";
 import { getPages } from "~/lib/collections/pages";
-import HTML from "~/components/layout/base/HTML.astro";
+import Base from "~/layouts/Base.astro";
 
 type Props = {
   entry?: CollectionEntry<"pages">;
@@ -35,6 +35,6 @@ if (!entry) {
 const { Content } = await render(entry);
 ---
 
-<HTML collection="pages" entry={entry} type="webpage">
+<Base collection="pages" entry={entry} type="webpage">
   <Content />
-</HTML>
+</Base>

@@ -1,6 +1,6 @@
 ---
 import { getEntry } from "astro:content";
-import HTML from "~/components/layout/base/HTML.astro";
+import Base from "~/layouts/Base.astro";
 
 const entry = await getEntry("pages", "search");
 
@@ -9,12 +9,12 @@ if (!entry) {
 }
 ---
 
-<HTML entry={entry} type="searchResultsPage">
+<Base entry={entry} type="searchResultsPage">
   <section class="contain relative mb-4 grid grid-cols-1 place-content-start gap-4 md:mb-12">
     <h1>Search this site</h1>
     <div id="search" class="w-full"></div>
   </section>
-</HTML>
+</Base>
 
 <script>
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

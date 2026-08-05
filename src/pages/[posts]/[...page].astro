@@ -3,7 +3,7 @@ import type { GetStaticPathsOptions, Page } from "astro";
 import { type CollectionEntry, getEntry, render } from "astro:content";
 import { collectionsConfig } from "~/site.config";
 import { getPosts } from "~/lib/collections/posts";
-import HTML from "~/components/layout/base/HTML.astro";
+import Base from "~/layouts/Base.astro";
 
 interface Props {
   page: Page<CollectionEntry<"posts">>;
@@ -28,11 +28,11 @@ if (!entry) {
 const { Content } = await render(entry);
 ---
 
-<HTML
+<Base
   entry={entry}
   page={page}
   title=`${entry.data.title} page ${page.currentPage}`
   type="collectionPage"
 >
   <Content page={page} />
-</HTML>
+</Base>

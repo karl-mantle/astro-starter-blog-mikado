@@ -1,9 +1,9 @@
 ---
 import { Icon } from "astro-icon/components";
-import { getPostsCategories } from "src/lib/collections/posts";
-import NavigationDetails from "~/components/layout/header/navigation/NavigationDetails.astro";
-import TagCloud from "~/components/collections/generic/TagCloud.astro";
+import { getPostsCategories } from "~/lib/collections/posts";
 import { collectionsConfig } from "~/site.config";
+import NavigationDetails from "~/components/header/navigation/NavigationDetails.astro";
+import TagCloud from "~/components/collections/generic/TagCloud.astro";
 
 type Terms = {
   count?: number;

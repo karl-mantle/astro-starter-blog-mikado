@@ -2,7 +2,7 @@
 import { type CollectionEntry, render } from "astro:content";
 import { getPosts } from "~/lib/collections/posts";
 import { collectionsConfig } from "~/site.config";
-import HTML from "~/components/layout/base/HTML.astro";
+import Base from "~/layouts/Base.astro";
 import Hero from "~/components/collections/posts/Hero.astro";
 import RelatedPosts from "~/components/collections/posts/RelatedPosts.astro";
 import ShareLinks from "~/components/ui/ShareLinks.astro";
@@ -33,7 +33,7 @@ const { entry, prevEntry, nextEntry } = Astro.props;
 const { Content, headings } = await render(entry);
 ---
 
-<HTML collection="posts" entry={entry} tableOfContents={headings} type="article">
+<Base collection="posts" entry={entry} tableOfContents={headings} type="article">
   <TableOfContents headings={headings} />
 
   <article class="contain mb-4 grid grid-cols-1 gap-4">
@@ -73,4 +73,4 @@ const { Content, headings } = await render(entry);
       <RelatedPosts category={entry.data.category} max={3} variant="image" class="!p-0" />
     </section>
   </aside>
-</HTML>
+</Base>

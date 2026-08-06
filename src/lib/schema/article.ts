@@ -1,7 +1,7 @@
 import type { CollectionEntry } from "astro:content";
 import slugify from "slugify";
-import { generalConfig } from "~/site.config";
-import { cleanUrl, getCommonStructuredData } from "~/lib/schema/common";
+import { siteConfig } from "~/site.config";
+import { getCommonStructuredData } from "~/lib/schema/common";
 
 export function createArticle(
   metadata: {
@@ -14,21 +14,21 @@ export function createArticle(
 ) {
   const { ids: commonIds, nodes: commonNodes } = getCommonStructuredData();
 
-  const canonicalUrl = cleanUrl(metadata.url);
+  const canonicalUrl = metadata.url;
 
   const ids = {
     webpage: `${canonicalUrl}#webpage`,
     article: `${canonicalUrl}#article`,
     /* breadcrumb: `${canonicalUrl}#breadcrumb`, */
     primaryImage: `${canonicalUrl}#primaryimage`,
-    person: `${generalConfig.url}#author-${slugify(entry.data.author ?? "unknown")}`,
+    person: `${siteConfig.url}#author-${slugify(entry.data.author ?? "unknown")}`,
   };
 
   const articleImage = entry.data.image
     ? {
         "@type": "ImageObject",
         "@id": ids.primaryImage,
-        inLanguage: generalConfig.language,
+        inLanguage: siteConfig.locale,
         url: entry.data.image.src.src,
         contentUrl: entry.data.image.src.src,
         width: entry.data.image.src.width,
@@ -51,7 +51,7 @@ export function createArticle(
       {
         "@type": "WebPage",
         "@id": ids.webpage,
-        inLanguage: generalConfig.language,
+        inLanguage: siteConfig.locale,
         url: canonicalUrl,
         name: metadata.title,
         description: metadata.description,
@@ -67,7 +67,7 @@ export function createArticle(
         "@type": "BreadcrumbList",
         "@id": ids.breadcrumb,
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: generalConfig.url },
+          { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
           { "@type": "ListItem", position: 2, name: entry.data.title, item: canonicalUrl },
         ],
       }, */
@@ -75,7 +75,7 @@ export function createArticle(
       {
         "@type": ["Article", "BlogPosting"],
         "@id": ids.article,
-        inLanguage: generalConfig.language,
+        inLanguage: siteConfig.locale,
         url: canonicalUrl,
         headline: metadata.title,
         description: metadata.description,

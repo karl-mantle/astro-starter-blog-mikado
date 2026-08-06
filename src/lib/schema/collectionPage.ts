@@ -1,6 +1,6 @@
 import type { Page } from "astro";
-import { cleanUrl, getCommonStructuredData } from "~/lib/schema/common";
-import { collectionsConfig, generalConfig } from "~/site.config";
+import { getCommonStructuredData } from "~/lib/schema/common";
+import { collectionsConfig, siteConfig } from "~/site.config";
 
 export function createCollectionPage(
   metadata: {
@@ -12,7 +12,7 @@ export function createCollectionPage(
   page?: Page,
 ) {
   const { ids: commonIds, nodes: commonNodes } = getCommonStructuredData();
-  const canonicalUrl = cleanUrl(metadata.url);
+  const canonicalUrl = metadata.url;
 
   const ids = {
     webpage: `${canonicalUrl}#webpage`,
@@ -28,7 +28,7 @@ export function createCollectionPage(
       {
         "@type": "CollectionPage",
         "@id": ids.webpage,
-        inLanguage: generalConfig.language,
+        inLanguage: siteConfig.locale,
         url: canonicalUrl,
         name: metadata.title,
         description: metadata.description,
@@ -43,7 +43,7 @@ export function createCollectionPage(
         "@type": "BreadcrumbList",
         "@id": ids.breadcrumb,
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: generalConfig.url },
+          { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
           { "@type": "ListItem", position: 2, name: metadata.title, item: canonicalUrl },
         ],
       }, */
@@ -57,11 +57,7 @@ export function createCollectionPage(
           ? page.data.map((p, i) => ({
               "@type": "ListItem",
               position: i + 1,
-              url: cleanUrl(
-                new URL(
-                  `${generalConfig.url}${collectionsConfig.permalink_posts_entry}${p.data.slug}`,
-                ),
-              ),
+              url: `${siteConfig.url}${collectionsConfig.permalink_posts_entry}${p.data.slug}`,
               name: p.data.title,
             }))
           : undefined,

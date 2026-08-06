@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { generalConfig } from "~/site.config";
+import { siteConfig } from "~/site.config";
 import NavigationBtn from "~/components/header/buttons/Navigation.astro";
 import NavigationCustom from "~/components/header/navigation/NavigationCustom.astro";
 import SiteLogo from "~/assets/svg/logo-1-1.svg";
@@ -20,7 +20,7 @@ import SiteLogo from "~/assets/svg/logo-1-1.svg";
       <span
         class="group-hover/logo:border-mikado-950 border-b border-transparent py-1 text-xl leading-none font-medium transition duration-500 group-focus-visible/logo:text-black dark:group-hover/logo:border-white"
       >
-        {generalConfig.name}
+        {siteConfig.short_name}
       </span>
     </a>
 

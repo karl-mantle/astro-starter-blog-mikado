@@ -1,11 +1,7 @@
-import { generalConfig, socialLinks } from "~/site.config";
-
-export function cleanUrl(url: URL) {
-  return url.toString().replace(/\/$/, "");
-}
+import { siteConfig, socialLinks } from "~/site.config";
 
 export function getCommonStructuredData() {
-  const siteUrl = cleanUrl(generalConfig.url);
+  const siteUrl = siteConfig.url;
 
   const ids = {
     website: `${siteUrl}#website`,
@@ -18,10 +14,10 @@ export function getCommonStructuredData() {
     {
       "@type": "WebSite",
       "@id": ids.website,
-      inLanguage: generalConfig.language,
+      inLanguage: siteConfig.locale,
       url: siteUrl,
-      name: generalConfig.name,
-      description: generalConfig.description,
+      name: siteConfig.name,
+      description: siteConfig.description,
       publisher: { "@id": ids.organization },
       potentialAction: [
         {
@@ -43,18 +39,18 @@ export function getCommonStructuredData() {
     {
       "@type": "Organization",
       "@id": ids.organization,
-      name: generalConfig.name,
+      name: siteConfig.name,
       url: siteUrl,
-      logo: generalConfig.logo
+      logo: siteConfig.logo
         ? {
             "@type": "ImageObject",
             "@id": ids.logo,
-            url: generalConfig.logo.src,
-            contentUrl: generalConfig.logo.src,
-            width: generalConfig.logo.width,
-            height: generalConfig.logo.height,
-            inLanguage: generalConfig.language,
-            caption: generalConfig.name,
+            url: siteConfig.logo.src,
+            contentUrl: siteConfig.logo.src,
+            width: siteConfig.logo.width,
+            height: siteConfig.logo.height,
+            inLanguage: siteConfig.locale,
+            caption: siteConfig.name,
           }
         : undefined,
       image: {
@@ -65,11 +61,11 @@ export function getCommonStructuredData() {
     {
       "@type": "ImageObject",
       "@id": ids.ogImage,
-      inLanguage: generalConfig.language,
-      url: generalConfig.ogImage.src,
-      contentUrl: generalConfig.ogImage.src,
-      width: generalConfig.ogImage.width,
-      height: generalConfig.ogImage.height,
+      inLanguage: siteConfig.locale,
+      url: siteConfig.ogImage.src,
+      contentUrl: siteConfig.ogImage.src,
+      width: siteConfig.ogImage.width,
+      height: siteConfig.ogImage.height,
       caption: "OpenGraph Image",
     },
   ];

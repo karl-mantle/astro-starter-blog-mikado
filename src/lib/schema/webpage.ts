@@ -1,5 +1,5 @@
-import { generalConfig } from "~/site.config";
-import { cleanUrl, getCommonStructuredData } from "~/lib/schema/common";
+import { siteConfig } from "~/site.config";
+import { getCommonStructuredData } from "~/lib/schema/common";
 
 export function createWebpage(metadata: {
   type: string;
@@ -8,7 +8,7 @@ export function createWebpage(metadata: {
   description: string;
 }) {
   const { ids: commonIds, nodes: commonNodes } = getCommonStructuredData();
-  const canonicalUrl = cleanUrl(metadata.url);
+  const canonicalUrl = metadata.url;
 
   const ids = {
     webpage: `${canonicalUrl}#webpage`,
@@ -20,7 +20,7 @@ export function createWebpage(metadata: {
     ? {
         "@type": "ImageObject",
         "@id": ids.primaryImage,
-        inLanguage: generalConfig.language,
+        inLanguage: siteConfig.locale,
         url: entry.data.image.src.src,
         contentUrl: entry.data.image.src.src,
         caption: entry.data.image.alt,
@@ -37,7 +37,7 @@ export function createWebpage(metadata: {
       {
         "@type": "WebPage",
         "@id": ids.webpage,
-        inLanguage: generalConfig.language,
+        inLanguage: siteConfig.locale,
         url: canonicalUrl,
         name: metadata.title,
         description: metadata.description,
@@ -52,7 +52,7 @@ export function createWebpage(metadata: {
         "@type": "BreadcrumbList",
         "@id": ids.breadcrumb,
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: generalConfig.url },
+          { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
           { "@type": "ListItem", position: 2, name: metadata.title, item: canonicalUrl },
         ],
       }, */

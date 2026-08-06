@@ -21,7 +21,7 @@ export default defineConfig({
       themes: ["#000", "#fff"],
       background: "#fff",
       manifest: {
-        start_url: siteConfig.url,
+        start_url: siteConfig.url.toString(),
         orientation: "any",
         display: "standalone",
         display_override: ["window-controls-overlay", "minimal-ui"],

@@ -1,7 +1,7 @@
 ---
 import type { MarkdownHeading, Page } from "astro";
 import type { DataEntryMap } from "astro:content";
-import { generalConfig } from "~/site.config";
+import { siteConfig } from "~/site.config";
 import { createSchema } from "~/lib/schema";
 import Head from "~/layouts/Head.astro";
 import HeadEnd from "~/components/measurement/HeadEnd.astro";
@@ -29,7 +29,7 @@ const metadata = {
   type,
   title,
   description,
-  url: new URL(Astro.url.pathname, Astro.site),
+  url: new URL(Astro.url.pathname, siteConfig.url),
 };
 
 const schema = createSchema(metadata, entry, page);
@@ -38,7 +38,7 @@ const pagefindAttr = collection ? { "data-pagefind-filter": `collection:${collec
 ---
 
 <!doctype html>
-<html lang={generalConfig.locale}>
+<html lang={siteConfig.locale}>
   <Head description={description} entry={entry} title={title}>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
     {type === "searchResultsPage" && <script type="module" src="/pagefind/pagefind-ui.js" />}

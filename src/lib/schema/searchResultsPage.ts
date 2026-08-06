@@ -1,5 +1,5 @@
-import { generalConfig } from "~/site.config";
-import { cleanUrl, getCommonStructuredData } from "~/lib/schema/common";
+import { siteConfig } from "~/site.config";
+import { getCommonStructuredData } from "~/lib/schema/common";
 
 export function createSearchResultPage(metadata: {
   type: string;
@@ -8,7 +8,7 @@ export function createSearchResultPage(metadata: {
   description: string;
 }) {
   const { ids: commonIds, nodes: commonNodes } = getCommonStructuredData();
-  const canonicalUrl = cleanUrl(metadata.url);
+  const canonicalUrl = metadata.url;
 
   const webpageId = `${canonicalUrl}#webpage`;
 
@@ -20,7 +20,7 @@ export function createSearchResultPage(metadata: {
       {
         "@type": "SearchResultsPage",
         "@id": webpageId,
-        inLanguage: generalConfig.language,
+        inLanguage: siteConfig.locale,
         url: canonicalUrl,
         name: "Search results",
         isPartOf: { "@id": commonIds.website },

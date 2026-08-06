@@ -1,4 +1,4 @@
-import { getSiteUrl } from "~/lib/domain";
+import { getSiteUrl } from "./lib/domain";
 
 export const domainConfig = {
   development: {
